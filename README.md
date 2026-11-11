@@ -20,6 +20,3 @@ Open `index.html` in a modern web browser. The game is a static website and does
 - `styles.css` — visual design and responsive styles.
 - `script.js` — numeral explanations, practice, and quiz interactions.
 
-## License
-
-This project is available under the MIT License. See [LICENSE](LICENSE).
