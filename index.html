@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f1e7" />
+    <meta name="description" content="A friendly, interactive game for learning to read and write Roman numerals from 1 to 50." />
+    <title>Roman Numerals — A little learning game</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#home" aria-label="Roman Numerals home">
+          <span class="brand-mark" aria-hidden="true">R</span>
+          <span class="brand-name">ROMAN <span>NUMERALS</span></span>
+        </a>
+        <div class="game-hud" aria-label="Game status"><span class="level-badge"><span aria-hidden="true">✦</span> LEVEL 1</span><span class="star-badge"><span class="star-icon" aria-hidden="true">★</span><span id="star-count">0</span> stars</span></div>
+      </header>
+
+      <main id="app" aria-live="polite">
+        <section class="screen welcome-screen" id="welcome" aria-labelledby="welcome-title">
+          <div class="welcome-copy">
+            <p class="eyebrow"><span class="eyebrow-rule"></span> YOUR FIRST ROMAN QUEST</p>
+            <h1 id="welcome-title">Welcome to<br /><em>Roman Numerals!</em></h1>
+            <p class="welcome-description">Discover how the Romans wrote numbers and learn to read and write Roman numerals from 1 to 50.</p>
+            <p class="welcome-question">Do you already know Roman numerals, or would you like to learn?</p>
+            <div class="welcome-actions"><button class="button button-primary button-large" id="start-learning">Start my quest <span aria-hidden="true">→</span></button><button class="button button-secondary button-large" id="start-quiz">Skip to the quiz <span aria-hidden="true">↗</span></button></div>
+            <p class="welcome-footnote"><span aria-hidden="true">✦</span> New to Roman numerals? Your first lesson is right this way.</p>
+          </div>
+          <div class="welcome-art" aria-hidden="true">
+            <div class="arch-frame"><div class="arch-inner">
+              <span class="art-kicker">THE ROMAN WAY</span>
+              <span class="art-numeral">I<span>V</span>X</span>
+              <span class="art-caption">one · five · ten</span>
+            </div></div>
+            <span class="art-spark spark-one">✳</span><span class="art-spark spark-two">✦</span>
+            <span class="art-seal">ROMA<br />SPQR</span>
+          </div>
+        </section>
+
+        <section class="screen lesson-screen hidden" id="lesson" aria-labelledby="lesson-title">
+          <div class="screen-heading">
+            <div><p class="eyebrow"><span class="eyebrow-rule"></span> LEVEL 1 · SYMBOL TRAIL</p><h1 id="lesson-title">Meet the numerals</h1><p class="screen-intro">Start with four symbols, then explore numbers 1–50 in small groups. Choose any number for a quick explanation.</p></div>
+            <div class="step-pill"><span class="step-dot"></span> LESSON <span class="step-divider">/</span> 01</div>
+          </div>
+          <div class="lesson-content">
+            <section class="symbol-intro card-surface" aria-label="The four Roman numeral symbols">
+              <div class="section-label"><span>YOUR STARTER SYMBOLS</span><span>Tap one to jump to it</span></div>
+              <div class="symbol-cards">
+                <button class="symbol-card" type="button" data-symbol-number="1"><span class="symbol-card-mark">I</span><span><strong>One</strong><small>I = 1</small></span></button>
+                <button class="symbol-card" type="button" data-symbol-number="5"><span class="symbol-card-mark">V</span><span><strong>Five</strong><small>V = 5</small></span></button>
+                <button class="symbol-card" type="button" data-symbol-number="10"><span class="symbol-card-mark">X</span><span><strong>Ten</strong><small>X = 10</small></span></button>
+                <button class="symbol-card" type="button" data-symbol-number="50"><span class="symbol-card-mark">L</span><span><strong>Fifty</strong><small>L = 50</small></span></button>
+              </div>
+            </section>
+            <section class="lesson-explorer card-surface" aria-label="Explore numbers from 1 to 50">
+              <div class="section-label"><span id="range-title">EXPLORE · 1—10</span><span>Choose any number</span></div>
+              <div class="range-tabs" role="group" aria-label="Choose a number range">
+                <button class="range-tab active" type="button" data-range-start="1" aria-pressed="true">1–10</button>
+                <button class="range-tab" type="button" data-range-start="11" aria-pressed="false">11–20</button>
+                <button class="range-tab" type="button" data-range-start="21" aria-pressed="false">21–30</button>
+                <button class="range-tab" type="button" data-range-start="31" aria-pressed="false">31–40</button>
+                <button class="range-tab" type="button" data-range-start="41" aria-pressed="false">41–50</button>
+              </div>
+              <div class="number-grid" id="number-grid" aria-label="Choose a number to explore"></div>
+              <div class="lesson-detail" id="lesson-detail" aria-live="polite"></div>
+            </section>
+            <section class="quick-rules card-surface" aria-label="Roman numeral rules">
+              <div class="section-label"><span>POWER-UPS FOR YOUR BRAIN</span><span>Quick patterns</span></div>
+              <div class="quick-rule-grid">
+                <p><strong>Repeat to add</strong><span>II = 2 · III = 3</span></p>
+                <p><strong>Put larger first to add</strong><span>VI = 6 · XI = 11</span></p>
+                <p><strong>Small first to subtract</strong><span>IV = 4 · IX = 9 · XL = 40</span></p>
+              </div>
+            </section>
+          </div>
+          <div class="lesson-footer"><span class="lesson-hint" id="lesson-hint">Ready when you are. You can keep exploring or start practice.</span><button class="button button-primary" id="start-practice"><span aria-hidden="true">▶</span> Play Practice</button></div>
+        </section>
+
+        <section class="screen activity-screen hidden" id="practice" aria-labelledby="practice-title">
+          <div class="activity-top"><button class="text-button" data-go="lesson">← Review lesson</button><div class="step-pill"><span class="step-dot"></span> PRACTICE <span class="step-divider">/</span> 02</div></div>
+          <div class="activity-card card-surface">
+            <div class="activity-meta"><span class="eyebrow"><span class="eyebrow-rule"></span> BONUS ROUND · PRACTICE</span><span class="question-count" id="practice-progress">QUESTION 1 OF 6</span></div>
+            <div class="progress-track"><div class="progress-fill" id="practice-progress-fill"></div></div>
+            <div class="question-area"><p class="question-kicker" id="practice-direction">NUMBER → NUMERAL</p><h1 class="question-title" id="practice-title"></h1><div class="answer-options" id="practice-options"></div></div>
+            <div class="feedback-box hidden" id="practice-feedback" role="status"></div>
+            <div class="activity-actions"><span class="activity-tip">A good guess is a great start.</span><button class="button button-primary hidden" id="practice-continue">Continue <span aria-hidden="true">→</span></button></div>
+          </div>
+        </section>
+
+        <section class="screen activity-screen hidden" id="builder" aria-labelledby="builder-title">
+          <div class="activity-top"><button class="text-button" data-go="practice">← Back to practice</button><div class="step-pill"><span class="step-dot"></span> YOUR TURN <span class="step-divider">/</span> 03</div></div>
+          <div class="activity-card builder-card card-surface">
+            <div class="activity-meta"><span class="eyebrow"><span class="eyebrow-rule"></span> BUILD CHALLENGE</span><span class="question-count">WRITING PRACTICE</span></div>
+            <h1 class="question-title" id="builder-title">Build the Roman numeral for <span>40</span>.</h1>
+            <p class="builder-subtitle">Choose symbols to place them in your answer. You’ve met L (50) and X (10)—now put the smaller symbol first to take away.</p>
+            <div class="builder-workspace">
+              <div class="builder-answer-label">YOUR ANSWER <span id="builder-length">0 symbols</span></div>
+              <div class="builder-answer" id="builder-answer" aria-label="Your numeral so far"><span class="answer-placeholder">Tap a symbol below</span></div>
+              <div class="symbol-picker" aria-label="Available Roman numeral symbols"><button class="symbol-button" data-symbol="I" aria-label="Add I">I</button><button class="symbol-button" data-symbol="V" aria-label="Add V">V</button><button class="symbol-button" data-symbol="X" aria-label="Add X">X</button><button class="symbol-button" data-symbol="L" aria-label="Add L">L</button><button class="undo-button" id="builder-undo" aria-label="Remove last symbol" disabled>⌫</button></div>
+            </div>
+            <div class="feedback-box hidden" id="builder-feedback" role="status"></div>
+            <div class="activity-actions"><button class="text-button clear-button" id="builder-clear">Clear answer</button><button class="button button-primary" id="builder-check">Check answer <span aria-hidden="true">→</span></button><button class="button button-primary hidden" id="builder-continue">Take the final quiz <span aria-hidden="true">→</span></button></div>
+          </div>
+        </section>
+
+        <section class="screen activity-screen hidden" id="quiz" aria-labelledby="quiz-title">
+          <div class="activity-top"><button class="text-button" id="quiz-back-button">← Back to writing practice</button><div class="step-pill"><span class="step-dot"></span> QUIZ <span class="step-divider">/</span> 04</div></div>
+          <div class="activity-card card-surface">
+            <div class="activity-meta"><span class="eyebrow"><span class="eyebrow-rule"></span> YOU’VE GOT THIS</span><span class="question-count" id="quiz-progress">QUESTION 1 OF 10</span></div>
+            <div class="progress-track"><div class="progress-fill" id="quiz-progress-fill"></div></div>
+            <div class="question-area"><p class="question-kicker" id="quiz-direction">NUMBER → NUMERAL</p><h1 class="question-title" id="quiz-title"></h1><div class="answer-options" id="quiz-options"></div></div>
+            <div class="feedback-box hidden" id="quiz-feedback" role="status"></div>
+            <div class="activity-actions"><span class="activity-tip" id="quiz-score-live">Score: 0</span><button class="button button-primary hidden" id="quiz-continue">Continue <span aria-hidden="true">→</span></button></div>
+          </div>
+        </section>
+
+        <section class="screen result-screen hidden" id="results" aria-labelledby="results-title">
+          <div class="result-card card-surface">
+            <div class="result-medallion" aria-hidden="true">✦</div>
+            <p class="eyebrow"><span class="eyebrow-rule"></span> QUEST COMPLETE</p>
+            <h1 id="results-title">Bravo!</h1>
+            <p class="result-message" id="result-message">You did a wonderful job.</p>
+            <div class="score-display"><span class="score-number" id="final-score">0</span><span class="score-total">/ 10</span></div>
+            <p class="score-caption"><strong id="correct-count">0 correct answers</strong> on your final quiz</p>
+            <div class="result-actions"><button class="button button-primary" id="play-again">Play Again <span aria-hidden="true">↻</span></button><button class="button button-secondary" data-go="lesson">Review the Lesson</button></div>
+          </div>
+          <div class="result-footnote">Every great Roman scholar started with <span>I</span>.</div>
+        </section>
+      </main>
+
+      <footer class="page-footer"><span>MADE FOR THE JOY OF LEARNING</span><span class="footer-laurel" aria-hidden="true">❧</span><span>ROMA · I—L</span></footer>
+    </div>
+  </body>
+</html>
